@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexcifyTechnologys - Future Tech Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(255, 255, 0, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #00ffff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(255, 0, 255, 0.8));
+            }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #00ffff;
+            text-decoration: none;
+            border: 2px solid #00ffff;
+            border-radius: 50px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .secondary-btn {
+            border-color: #ff00ff;
+            color: #ff00ff;
+        }
+
+        .secondary-btn:hover {
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffff, #ffffff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-bottom: 4rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00ffff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: #00ffff;
+            color: #00ffff;
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-item:hover::after {
+            transform: translateX(100%);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.2);
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #00ffff;
+        }
+
+        .portfolio-item p {
+            opacity: 0.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .lightbox-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #00ffff;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 255, 255, 0.2);
+            color: #00ffff;
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 255, 255, 0.4);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-btn { left: 2rem; }
+        .next-btn { right: 2rem; }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                display: none;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">APEXCIFY TECHNOLOGYS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>FUTURE TECH</h1>
+            <p>Pushing the boundaries of technology with cutting-edge solutions that transform businesses and revolutionize industries</p>
+            <div class="cta-buttons">
+                <a href="#services" class="cta-button">Explore Tech</a>
+                <a href="#portfolio" class="cta-button secondary-btn">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services fade-in" id="services">
+        <div class="container">
+            <h2 class="section-title">Advanced Solutions</h2>
+            <p class="section-subtitle">Cutting-edge technology services designed for tomorrow</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔮</div>
+                    <h3>Neural Networks</h3>
+                    <p>Advanced AI and machine learning solutions that adapt and evolve with your business needs</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Quantum Computing</h3>
+                    <p>Next-generation computing solutions for complex problem-solving and data processing</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Web3 Development</h3>
+                    <p>Decentralized applications and blockchain solutions for the future of the internet</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>IoT Integration</h3>
+                    <p>Smart device ecosystems and Internet of Things solutions for connected experiences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio fade-in" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Innovation Portfolio</h2>
+            <div class="filter-tabs">
+                <button class="filter-btn active" onclick="filterPortfolio('all')">All Projects</button>
+                <button class="filter-btn" onclick="filterPortfolio('ai')">AI/ML</button>
+                <button class="filter-btn" onclick="filterPortfolio('web3')">Web3</button>
+                <button class="filter-btn" onclick="filterPortfolio('iot')">IoT</button>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <div class="portfolio-item ai" onclick="openLightbox(0)">
+                    <h3>AI Vision System</h3>
+                    <p>Computer vision platform for automated quality control and object recognition</p>
+                </div>
+                <div class="portfolio-item web3" onclick="openLightbox(1)">
+                    <h3>DeFi Protocol</h3>
+                    <p>Decentralized finance platform with smart contracts and yield farming</p>
+                </div>
+                <div class="portfolio-item iot" onclick="openLightbox(2)">
+                    <h3>Smart City Network</h3>
+                    <p>IoT infrastructure for urban management and environmental monitoring</p>
+                </div>
+                <div class="portfolio-item ai" onclick="openLightbox(3)">
+                    <h3>Neural Chatbot</h3>
+                    <p>Advanced conversational AI with natural language processing capabilities</p>
+                </div>
+                <div class="portfolio-item web3" onclick="openLightbox(4)">
+                    <h3>NFT Marketplace</h3>
+                    <p>Blockchain-based digital asset trading platform with smart contracts</p>
+                </div>
+                <div class="portfolio-item iot" onclick="openLightbox(5)">
+                    <h3>Industrial Automation</h3>
+                    <p>Smart factory solutions with predictive maintenance and real-time monitoring</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <button class="nav-btn prev-btn" onclick="prevProject()">‹</button>
+        <div class="lightbox-content">
+            <span class="close-btn" onclick="closeLightbox()">×</span>
+            <h3 id="lightboxTitle">Project Title</h3>
+            <p id="lightboxDescription">Detailed project description...</p>
+            <div style="margin-top: 2rem;">
+                <span style="color: #00ffff; font-weight: bold;">Technologies:</span>
+                <span id="lightboxTech">React, Node.js, AI</span>
+            </div>
+        </div>
+        <button class="nav-btn next-btn" onclick="nextProject()">›</button>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#careers">Careers</a>
+                <a href="#blog">Tech Blog</a>
+                <a href="#support">Support</a>
+            </div>
+            <p>&copy; ApexcifyTechnologys. Innovating Tomorrow's Solutions Today.</p>
+            <p style="margin-top: 1rem; opacity: 0.7;">
+                Contact: apexcifytechnologys@gmail.com 
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Portfolio data
+        const projects = [
+            { 
+                title: "AI Vision System", 
+                description: "Advanced computer vision platform using deep learning for automated quality control, object recognition, and real-time image processing in manufacturing environments.",
+                tech: "TensorFlow, OpenCV, Python, CUDA",
+                category: "ai"
+            },
+            { 
+                title: "DeFi Protocol", 
+                description: "Decentralized finance platform built on Ethereum with smart contracts for lending, borrowing, and yield farming with advanced security features.",
+                tech: "Solidity, Web3.js, React, Node.js",
+                category: "web3"
+            },
+            { 
+                title: "Smart City Network", 
+                description: "Comprehensive IoT infrastructure for urban management including traffic optimization, environmental monitoring, and energy management systems.",
+                tech: "Arduino, Raspberry Pi, MQTT, InfluxDB",
+                category: "iot"
+            },
+            { 
+                title: "Neural Chatbot", 
+                description: "Sophisticated conversational AI with natural language processing, context awareness, and multi-language support for enterprise customer service.",
+                tech: "GPT, NLP, Python, FastAPI",
+                category: "ai"
+            },
+            { 
+                title: "NFT Marketplace", 
+                description: "Blockchain-based digital asset trading platform with smart contracts, royalty distribution, and integrated wallet functionality.",
+                tech: "Solidity, IPFS, React, Ethers.js",
+                category: "web3"
+            },
+            { 
+                title: "Industrial Automation", 
+                description: "Smart factory solution with predictive maintenance, real-time monitoring, and automated quality control using IoT sensors and machine learning.",
+                tech: "PLC, SCADA, Python, LoRaWAN",
+                category: "iot"
+            }
+        ];
+
+        let currentProjectIndex = 0;
+
+        function openLightbox(index) {
+            currentProjectIndex = index;
+            const project = projects[index];
+            document.getElementById('lightboxTitle').textContent = project.title;
+            document.getElementById('lightboxDescription').textContent = project.description;
+            document.getElementById('lightboxTech').textContent = project.tech;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function nextProject() {
+            currentProjectIndex = (currentProjectIndex + 1) % projects.length;
+            openLightbox(currentProjectIndex);
+        }
+
+        function prevProject() {
+            currentProjectIndex = (currentProjectIndex - 1 + projects.length) % projects.length;
+            openLightbox(currentProjectIndex);
+        }
+
+        function filterPortfolio(category) {
+            const items = document.querySelectorAll('.portfolio-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            items.forEach((item, index) => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Close lightbox events
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+    </script>
+</body>
+</html>
